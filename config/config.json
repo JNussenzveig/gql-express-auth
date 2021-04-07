@@ -1,0 +1,28 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": null,
+    "database": "gql_auth",
+    "host": "localhost",
+    "dialect": "postgresql",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "postgres",
+    "password": null,
+    "database": "gql_auth_test",
+    "host": "localhost",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "host": "somehost.com",
+    "dialect": "postgres",
+    "protocol": "postgres",
+    "dialectOptions": {
+      "ssl": true
+    },
+    "logging": true
+  }
+}
