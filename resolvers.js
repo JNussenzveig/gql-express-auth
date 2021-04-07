@@ -1,6 +1,6 @@
 const { User } = require('./models');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const SECRET_SAUCE = process.env.JWT_SECRET
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -102,7 +102,8 @@ module.exports = {
       throw new Error('Email already registered');
     }
 
-    const hashedPassword = await bcrypt.hash(password, 12);
+    const salt = await bcrypt.genSalt(12)
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     let newUser;
     try {
